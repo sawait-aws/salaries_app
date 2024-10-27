@@ -5,7 +5,7 @@ import 'package:http_parser/http_parser.dart'; // Add this import
 
 class ApiService {
   final String baseUrl =
-      'http://10.0.2.2:8000/api'; // Replace with your actual API URL
+      'http://192.168.100.26:8000/api'; // Replace with your actual API URL
 
   // Sign in function (already implemented)
   Future<Map<String, dynamic>> signIn(String userId, String password) async {
