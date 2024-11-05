@@ -22,6 +22,7 @@ class _ManagerDashboardState extends State<ManagerDashboard> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _positionController = TextEditingController();
   final TextEditingController _joiningDateController = TextEditingController();
+  final TextEditingController _emailAddressController = TextEditingController();
   final TextEditingController _userIdController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   String? selectedFileName; // Variable to hold the selected file name
@@ -198,7 +199,7 @@ class _ManagerDashboardState extends State<ManagerDashboard> {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Container(
-          width: 160,
+          width: 240,
           padding: const EdgeInsets.all(12.0),
           decoration: const BoxDecoration(
             color: Color(0xFFB3D7FF),
@@ -221,6 +222,8 @@ class _ManagerDashboardState extends State<ManagerDashboard> {
               Text('Position: ${employee['position']}'),
               const Text('Joining Date:'),
               Text('${employee['joining_date']}'),
+              const Text('Email Address:'),
+              Text('${employee['email_address']}'),
             ],
           ),
         ),
@@ -309,10 +312,21 @@ class _ManagerDashboardState extends State<ManagerDashboard> {
                 ),
               ],
             ),
-            const SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: _addEmployee,
-              child: const Text('Add Employee'),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _emailAddressController,
+                    decoration:
+                        const InputDecoration(labelText: 'Email Address'),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: _addEmployee,
+                  child: const Text('Add Employee'),
+                ),
+              ],
             ),
           ],
         ),
@@ -327,6 +341,7 @@ class _ManagerDashboardState extends State<ManagerDashboard> {
       "last_name": _lastNameController.text,
       "position": _positionController.text,
       "joining_date": _joiningDateController.text,
+      "email_address": _emailAddressController.text,
       "user_id": _userIdController.text,
       "password": _passwordController.text,
     };
@@ -343,6 +358,7 @@ class _ManagerDashboardState extends State<ManagerDashboard> {
         _lastNameController.clear();
         _positionController.clear();
         _joiningDateController.clear();
+        _emailAddressController.clear();
         _userIdController.clear();
         _passwordController.clear();
         ScaffoldMessenger.of(context).showSnackBar(

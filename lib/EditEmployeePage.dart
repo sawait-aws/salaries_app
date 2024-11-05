@@ -24,6 +24,7 @@ class _EditEmployeePageState extends State<EditEmployeePage> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _positionController = TextEditingController();
   final TextEditingController _joiningDateController = TextEditingController();
+  final TextEditingController _emailAddressController = TextEditingController();
   final TextEditingController _userIdController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final ApiService apiService = ApiService();
@@ -35,6 +36,7 @@ class _EditEmployeePageState extends State<EditEmployeePage> {
     _lastNameController.text = widget.employeeDetails['last_name'];
     _positionController.text = widget.employeeDetails['position'];
     _joiningDateController.text = widget.employeeDetails['joining_date'];
+    _emailAddressController.text = widget.employeeDetails['email_address'];
     _userIdController.text = widget.employeeDetails['user_id'].toString();
     // Password remains blank for security
   }
@@ -47,6 +49,7 @@ class _EditEmployeePageState extends State<EditEmployeePage> {
       _lastNameController.text,
       _positionController.text,
       _joiningDateController.text,
+      _emailAddressController.text,
       _userIdController.text,
       _passwordController.text,
     );
@@ -141,7 +144,6 @@ class _EditEmployeePageState extends State<EditEmployeePage> {
                   child: TextField(
                     controller: _userIdController,
                     decoration: const InputDecoration(labelText: 'User ID'),
-                    keyboardType: TextInputType.number,
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -154,10 +156,22 @@ class _EditEmployeePageState extends State<EditEmployeePage> {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _editEmployee,
-              child: const Text('Update Employee'),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _emailAddressController,
+                    decoration:
+                        const InputDecoration(labelText: 'Email Address'),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: _editEmployee,
+                  child: const Text('Update Employee'),
+                ),
+              ],
             ),
           ],
         ),
